@@ -31,4 +31,4 @@ const UserSchema = {
 }
 
 
-module.exports = { USER_TABLE, UserSchema, User }
+module.exports = { USER_TABLE, UserSchema }

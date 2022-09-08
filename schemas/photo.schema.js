@@ -4,12 +4,11 @@ const id = Joi.number().integer();
 const category_id = Joi.number().integer();
 const likes = Joi.number().integer();
 const image = Joi.string().uri();
-const path = Joi.string().min(3);
 
 const createPhotoSchema = Joi.object({
   category_id: category_id.required(),
+  likes: likes.default(0),
   image: image.required(),
-  path: path.required()
 });
 
 const updatePhotoSchema = Joi.object({

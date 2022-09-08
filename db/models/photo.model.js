@@ -5,24 +5,18 @@ const PHOTO_TABLE = 'photo';
 const PhotoSchema = {
   id: {
     allowNull: false,
-    autoIncrement: true,
     primaryKey: true,
     type: DataTypes.INTEGER
   },
   categoryId: {
     allowNull: false,
-    type: DataTypes.INTEGER,
-    unique: true,
+    type: DataTypes.INTEGER
   },
   likes: {
     allowNull: false,
     type: DataTypes.INTEGER
   },
   image: {
-    allowNull: false,
-    type: DataTypes.STRING,
-  },
-  path:{
     allowNull: false,
     type: DataTypes.STRING,
   }
