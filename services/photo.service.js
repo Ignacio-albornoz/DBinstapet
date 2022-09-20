@@ -1,5 +1,8 @@
 const boom = require('@hapi/boom');
 
+const { models } = require('./../libs/sequelize')
+
+
 class PhotoService {
 
   constructor(){
@@ -9,7 +12,8 @@ class PhotoService {
   }
 
   async find() {
-    return [];
+    const photos = await models.Photo.findAll();
+    return photos;
   }
 
   async findOne(id) {
