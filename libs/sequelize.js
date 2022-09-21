@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
-const { config } = require('../config/config');
-const setupModels = require('../db/models/');
+const { config } = require('./../config/config');
+const setupModels = require('./../db/models');
 
 const options = {
   dialect: 'postgres',
@@ -16,9 +16,8 @@ if (config.isProd) {
   }
 }
 
-const sequelize = new Sequelize(config.dbUrl, options); // Se crea una instancia de Sequelize, gestiona el pooling.
+const sequelize = new Sequelize(config.dbUrl, options);
 
 setupModels(sequelize);
-// sequelize.sync();
 
 module.exports = sequelize;

@@ -1,17 +1,23 @@
-const { Pool } = require('pg');
+const { Sequelize } = require('sequelize');
 
 const { config } = require('./../config/config');
+const setupModels = require('./../db/models');
 
-let URI = '';
-
-if (config.isProd){
-    URI = config.dbUrl;
-} else {
-    const USER = encodeURIComponent(config.dbUser);
-    const PASSWORD = encodeURIComponent(config.dbPassword);
-    URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
+const options = {
+  dialect: 'postgres',
+  logging: config.isProd ? false : true,
 }
 
-const pool = new Pool({ connectionString: URI });
+if (config.isProd) {
+  options.dialectOptions = {
+    ssl: {
+      rejectUnauthorized: false
+    }
+  }
+}
 
-module.exports = pool;
+const sequelize = new Sequelize(config.dbUrl, options);
+
+setupModels(sequelize);
+
+module.exports = sequelize;
