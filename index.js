@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-const whitelist = ['http://localhost:8081', 'https://insta-test-one.vercel.app'];
+const whitelist = ['http://localhost:8081', 'https://insta-test-one.vercel.app', 'https://insta-test-ignacioalbornoz.vercel.app/'];
 const options = {
   origin: (origin, callback) => {
     if (whitelist.includes(origin) || !origin) {
