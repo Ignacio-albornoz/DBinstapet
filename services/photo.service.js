@@ -8,7 +8,8 @@ class PhotoService {
   constructor(){
   }
   async create(data) {
-    return data;
+    const newPhoto = await models.Photo.create(data);
+    return newPhoto;
   }
 
   async find() {
@@ -17,17 +18,19 @@ class PhotoService {
   }
 
   async findOne(id) {
-    return { id };
+    const photo = await models.Photo.findById(id);
+    return photo;
   }
 
   async update(id, changes) {
-    return {
-      id,
-      changes,
-    };
+    const photo = await this.findOne(id);
+    const rta = await photo.update(changes);
+    return rta;
   }
 
   async delete(id) {
+    const photo = await this.findOne(id);
+    await photo.destroy();
     return { id };
   }
 

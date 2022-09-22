@@ -7,7 +7,8 @@ class CategoryService {
   constructor(){
   }
   async create(data) {
-    return data;
+    const newCategory = await models.Category.create(data);
+    return newCategory;
   }
 
   async find() {
@@ -16,17 +17,19 @@ class CategoryService {
   }
 
   async findOne(id) {
-    return { id };
+    const category = await models.Category.findById(id);
+    return category;
   }
 
   async update(id, changes) {
-    return {
-      id,
-      changes,
-    };
+    const category = await this.findOne(id);
+    const rta = await category.update(changes);
+    return rta;
   }
 
   async delete(id) {
+    const category = await this.findOne(id);
+    await category.destroy();
     return { id };
   }
 
