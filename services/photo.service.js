@@ -18,7 +18,7 @@ class PhotoService {
   }
 
   async findOne(id) {
-    const photo = this.Photo.find(item => item.id === id);
+    const photo = models.Photo.findByPk(id);
     if (!photo) {
       throw boom.notFound('photo not found');
     }

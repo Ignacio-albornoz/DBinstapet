@@ -17,7 +17,10 @@ class CategoryService {
   }
 
   async findOne(id) {
-    const category = await models.Category.findByPk(id);
+    const category = models.Category.findByPk(id);
+    if (!category) {
+      throw boom.notFound('category not found');
+    }
     return category;
   }
 
